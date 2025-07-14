@@ -3,6 +3,8 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { Button } from '@/components/ui/button';
+import { db } from '@/lib/firebase'; // adjust to your path where Firestore is initialized
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import {
   Form,
   FormControl,
@@ -18,7 +20,6 @@ import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardFooter } from '@/components/ui/card';
 import { ReportSchema, type ReportFormValues, type ReportAnalysis } from '@/lib/types';
 import { useToast } from '@/hooks/use-toast';
-import { submitReport } from '@/app/actions';
 import { useState, useRef } from 'react';
 import { LocateFixed, CheckCircle, AlertCircle, Bot, Camera, X } from 'lucide-react';
 import { Alert, AlertTitle, AlertDescription } from './ui/alert';
@@ -70,6 +71,39 @@ export function ReportForm() {
       }
     );
   };
+
+  const onSubmit = async (data: ReportFormValues) => {
+  setIsSubmitting(true);
+  try {
+    const payload = {
+      ...data,
+      createdAt: serverTimestamp(),
+    };
+
+    // save into "reports" collection
+    await addDoc(collection(db, 'reports'), payload);
+
+    toast({
+      title: 'Report submitted!',
+      description: 'Thank you for submitting the incident report.',
+    });
+
+    // Optionally reset the form & state
+    form.reset();
+    setImagePreview(null);
+    setLocationStatus('idle');
+    setAnalysisResult(null);
+  } catch (error) {
+    console.error('Error submitting report:', error);
+    toast({
+      title: 'Error',
+      description: 'Could not submit the report. Please try again later.',
+      variant: 'destructive',
+    });
+  } finally {
+    setIsSubmitting(false);
+  }
+};
   
   const handleImageChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
       const file = event.target.files?.[0];
@@ -90,30 +124,6 @@ export function ReportForm() {
     form.setValue('image', undefined);
     if(fileInputRef.current) {
         fileInputRef.current.value = '';
-    }
-  }
-
-  async function onSubmit(data: ReportFormValues) {
-    setIsSubmitting(true);
-    setAnalysisResult(null);
-    const result = await submitReport(data);
-    setIsSubmitting(false);
-
-    if (result.success && result.analysis) {
-      toast({
-        title: 'Report Submitted',
-        description: 'Thank you for your report. We will review it shortly.',
-      });
-      setAnalysisResult(result.analysis);
-      form.reset();
-      setLocationStatus('idle');
-      clearImage();
-    } else {
-      toast({
-        variant: 'destructive',
-        title: 'Submission Failed',
-        description: result.error,
-      });
     }
   }
 
@@ -204,7 +214,7 @@ export function ReportForm() {
                   name="image"
                   render={() => (
                     <FormItem>
-                      <FormLabel>Attach Image (Optional)</FormLabel>
+                      <FormLabel>Attach Image (Required for proof)</FormLabel>
                       <FormControl>
                         <div className="flex items-center gap-4">
                              <Input 

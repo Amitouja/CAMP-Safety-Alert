@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, ClipboardEdit, Map, Phone, FileText } from 'lucide-react';
+import { Home, ClipboardEdit, Map, Phone, FileText, Eye } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useIsMobile } from '@/hooks/use-mobile';
 
@@ -10,6 +10,7 @@ const navItems = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/report', label: 'Report', icon: ClipboardEdit },
   { href: '/map', label: 'Map', icon: Map },
+  { href: '/vision', label: 'Vision', icon: Eye },
   { href: '/resources', label: 'Resources', icon: FileText },
   { href: '/contact', label: 'Contact', icon: Phone },
 ];

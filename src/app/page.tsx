@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { ArrowRight, ClipboardEdit, Map, Phone } from "lucide-react";
+import { ArrowRight, ClipboardEdit, Map, Phone, Eye } from "lucide-react";
 import Link from "next/link";
 
 const features = [
@@ -21,6 +21,12 @@ const features = [
     description: "Get in touch with the development team for support or feedback.",
     href: "/contact",
     icon: <Phone className="h-8 w-8 text-primary" />,
+  },
+  {
+    title: "Our Vision",
+    description: "Learn about the mission and purpose behind MyCampusShield.",
+    href: "/vision",
+    icon: <Eye className="h-8 w-8 text-primary" />,
   },
 ];
 
