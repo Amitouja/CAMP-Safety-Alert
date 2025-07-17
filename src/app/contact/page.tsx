@@ -5,10 +5,10 @@ import { Github, Linkedin, Mail, Phone } from "lucide-react";
 import Image from "next/image";
 
 const contactDetails = [
-    { icon: Mail, text: "dev.team@example.com", href: "mailto:dev.team@example.com" },
-    { icon: Phone, text: "+1 (555) 123-4567", href: "tel:+15551234567" },
-    { icon: Linkedin, text: "LinkedIn Profile", href: "#" },
-    { icon: Github, text: "GitHub Profile", href: "#" },
+    { icon: Mail, text: "amitoujaboset@gmail.com", href: "mailto:amitoujaboset@gmail.com" },
+    { icon: Phone, text: "+91 9398482590", href: "tel:+91 9398482590" },
+    { icon: Linkedin, text: "LinkedIn Profile", href: "https://www.linkedin.com/in/amitouja/" },
+    { icon: Github, text: "GitHub Profile", href: "https://github.com/Amitouja" },
 ]
 
 export default function ContactPage() {
