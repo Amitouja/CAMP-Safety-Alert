@@ -6,19 +6,19 @@ const resources = [
     title: "Campus Emergency Procedures",
     description: "Official guidelines for various emergency situations.",
     icon: Siren,
-    href: "#",
+    href: "https://www.mha.gov.in/sites/default/files/2022-08/NERSGuideline_2100815%5B1%5D.pdf",
   },
   {
     title: "Silent Witness Program",
     description: "Anonymously report criminal activity.",
     icon: ShieldCheck,
-    href: "#",
+    href: "https://cybercrime.gov.in/Webform/Crime_ReportAnonymously.aspx",
   },
   {
     title: "Campus Safety Escort Service",
     description: "Request a safety escort on campus after dark.",
     icon: List,
-    href: "#",
+    href: "https://www.oxy.edu/offices-services/campus-safety/our-services/safety-escorts",
   },
 ];
 
