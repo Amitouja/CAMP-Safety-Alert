@@ -19,7 +19,7 @@ export default function ContactPage() {
                 Contact Us
             </h1>
             <p className="mt-2 text-muted-foreground">
-                We're here to help. Reach out to us with any questions or concerns.
+                Hi,I'm Amitouja and I'm here to help. Reach out with any questions or concerns.
             </p>
         </div>
         <Card className="w-full max-w-lg">
@@ -28,7 +28,7 @@ export default function ContactPage() {
                     <Image src="https://placehold.co/128x128.png" alt="Developer Team" data-ai-hint="team logo" width={128} height={128} />
                     <AvatarFallback>CS</AvatarFallback>
                 </Avatar>
-                <CardTitle className="text-2xl font-headline">The Developer Team</CardTitle>
+                <CardTitle className="text-2xl font-headline">Developer: Amitouja</CardTitle>
             </CardHeader>
             <CardContent>
                 <div className="space-y-4">
